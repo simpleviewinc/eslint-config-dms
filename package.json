@@ -1,0 +1,26 @@
+{
+	"name": "@simpleview/eslint-config-dms",
+	"version": "0.0.1",
+	"description": "DMS eslint config",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/simpleviewinc/eslint-config-dms.git"
+	},
+	"author": "Owen Allen <owenallenaz@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/simpleviewinc/eslint-config-dms/issues"
+	},
+	"homepage": "https://github.com/simpleviewinc/eslint-config-dms#readme",
+	"scripts": {
+		"publish": "bash ./scripts/publish"
+	},
+	"peerDependencies": {
+		"eslint": "*",
+		"eslint-plugin-react": "*",
+		"eslint-plugin-react-hooks": "*",
+		"@typescript-eslint/eslint-plugin": "*",
+		"@typescript-eslint/parser": "*"
+	}
+}
