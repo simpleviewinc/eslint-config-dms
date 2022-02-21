@@ -1,13 +1,53 @@
 module.exports = {
 	"parserOptions": {
 		"ecmaVersion": 11,
-		"sourceType": "module",
-		"ecmaFeatures": {
-			"jsx": true
-		}
+		"sourceType": "module"
 	},
 	"overrides": [
 		{
+			"files": [
+				"**/*.jsx"
+			],
+			"extends": [
+				"eslint:recommended",
+				"plugin:react/recommended"
+			],
+			"plugins": [
+				"react",
+				"react-hooks"
+			],
+			"settings": {
+				"react": {
+					"pragma": "React",
+					"version": "detect"
+				}
+			}
+		},
+		{
+			"overrides": [
+				{
+					"files": [
+						"**/*.tsx"
+					],
+					"extends": [
+						"eslint:recommended",
+						"plugin:react/recommended",
+						"plugin:react/jsx-runtime",
+						"plugin:@typescript-eslint/recommended"
+					],
+					"plugins": [
+						"@typescript-eslint",
+						"react",
+						"react-hooks"
+					],
+					"settings": {
+						"react": {
+							"pragma": "React",
+							"version": "detect"
+						}
+					}
+				}
+			],
 			"files": [
 				"**/*.ts",
 				"**/*.tsx"
@@ -27,20 +67,15 @@ module.exports = {
 			},
 			"extends": [
 				"eslint:recommended",
-				"plugin:react/recommended",
-				"plugin:react/jsx-runtime",
 				"plugin:@typescript-eslint/recommended"
 			],
 			"plugins": [
-				"@typescript-eslint",
-				"react",
-				"react-hooks"
+				"@typescript-eslint"
 			]
-		}
+		},
 	],
 	"extends": [
-		"eslint:recommended",
-		"plugin:react/recommended"
+		"eslint:recommended"
 	],
 	"rules": {
 		"prefer-const": 2,
@@ -66,21 +101,11 @@ module.exports = {
 		"space-before-blocks": 2,
 		"key-spacing": 2
 	},
-	"plugins": [
-		"react",
-		"react-hooks"
-	],
 	"env": {
 		"browser": true,
 		"node": true,
 		"es6": true,
 		"mocha": true,
 		"jest": true
-	},
-	"settings": {
-		"react": {
-			"pragma": "React",
-			"version": "detect"
-		}
 	}
 }
