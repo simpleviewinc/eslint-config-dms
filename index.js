@@ -64,7 +64,8 @@ module.exports = {
 						"ignoreRestSiblings": true
 					}
 				],
-				"@typescript-eslint/no-explicit-any": "off"
+				"@typescript-eslint/no-explicit-any": "off",
+				"react-hooks/exhaustive-deps": "error"
 			},
 			"extends": [
 				"eslint:recommended",
