@@ -3,79 +3,6 @@ module.exports = {
 		"ecmaVersion": 11,
 		"sourceType": "module"
 	},
-	"overrides": [
-		{
-			"files": [
-				"**/*.jsx"
-			],
-			"extends": [
-				"eslint:recommended",
-				"plugin:react/recommended",
-				"plugin:react/jsx-runtime"
-			],
-			"plugins": [
-				"react",
-				"react-hooks"
-			],
-			"settings": {
-				"react": {
-					"pragma": "React",
-					"version": "detect"
-				}
-			}
-		},
-		{
-			"overrides": [
-				{
-					"files": [
-						"**/*.tsx"
-					],
-					"extends": [
-						"eslint:recommended",
-						"plugin:react/recommended",
-						"plugin:react/jsx-runtime",
-						"plugin:@typescript-eslint/recommended"
-					],
-					"plugins": [
-						"@typescript-eslint",
-						"react",
-						"react-hooks"
-					],
-					"settings": {
-						"react": {
-							"pragma": "React",
-							"version": "detect"
-						}
-					}
-				}
-			],
-			"files": [
-				"**/*.ts",
-				"**/*.tsx"
-			],
-			"parser": "@typescript-eslint/parser",
-			"rules": {
-				"no-unused-vars": "off",
-				"@typescript-eslint/no-unused-vars": [
-					2,
-					{
-						"vars": "all",
-						"args": "none",
-						"ignoreRestSiblings": true
-					}
-				],
-				"@typescript-eslint/no-explicit-any": "off",
-				"react-hooks/exhaustive-deps": "error"
-			},
-			"extends": [
-				"eslint:recommended",
-				"plugin:@typescript-eslint/recommended"
-			],
-			"plugins": [
-				"@typescript-eslint"
-			]
-		},
-	],
 	"extends": [
 		"eslint:recommended"
 	],
@@ -103,6 +30,84 @@ module.exports = {
 		"space-before-blocks": 2,
 		"key-spacing": 2
 	},
+	"overrides": [
+		{
+			"files": [
+				"**/*.jsx"
+			],
+			"extends": [
+				"eslint:recommended",
+				"plugin:react/recommended",
+				"plugin:react/jsx-runtime"
+			],
+			"plugins": [
+				"react",
+				"react-hooks"
+			],
+			"settings": {
+				"react": {
+					"pragma": "React",
+					"version": "detect"
+				}
+			},
+			"rules": {
+				"react-hooks/rules-of-hooks": "error",
+				"react-hooks/exhaustive-deps": "error"
+			}
+		},
+		{
+			"files": [
+				"**/*.ts",
+				"**/*.tsx"
+			],
+			"parser": "@typescript-eslint/parser",
+			"rules": {
+				"no-unused-vars": "off",
+				"@typescript-eslint/no-unused-vars": [
+					2,
+					{
+						"vars": "all",
+						"args": "none",
+						"ignoreRestSiblings": true
+					}
+				],
+				"@typescript-eslint/no-explicit-any": "off"
+			},
+			"extends": [
+				"eslint:recommended",
+				"plugin:@typescript-eslint/recommended"
+			],
+			"plugins": [
+				"@typescript-eslint"
+			],
+			"overrides": [
+				{
+					"files": [
+						"**/*.tsx"
+					],
+					"extends": [
+						"eslint:recommended",
+						"plugin:react/recommended",
+						"plugin:react/jsx-runtime"
+					],
+					"plugins": [
+						"react",
+						"react-hooks"
+					],
+					"settings": {
+						"react": {
+							"pragma": "React",
+							"version": "detect"
+						}
+					},
+					"rules": {
+						"react-hooks/rules-of-hooks": "error",
+						"react-hooks/exhaustive-deps": "error"
+					}
+				}
+			],
+		},
+	],
 	"env": {
 		"browser": true,
 		"node": true,

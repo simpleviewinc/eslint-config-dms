@@ -22,5 +22,12 @@
 		"eslint-plugin-react-hooks": "*",
 		"@typescript-eslint/eslint-plugin": "*",
 		"@typescript-eslint/parser": "*"
+	},
+	"devDependencies": {
+		"@types/react": "*",
+		"@types/react-dom": "*",
+		"react": "*",
+		"react-dom": "*",
+		"typescript": "*"
 	}
 }
