@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./",
+		"noImplicitAny": false
+	},
+	"exclude": ["node_modules"],
+	"include": ["src"]
+}

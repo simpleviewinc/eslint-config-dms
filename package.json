@@ -14,13 +14,30 @@
 	},
 	"homepage": "https://github.com/simpleviewinc/eslint-config-dms#readme",
 	"scripts": {
-		"publish": "bash ./scripts/publish"
+		"publish": "bash ./scripts/publish",
+		"style": "eslint .",
+		"test": "ts-mocha --paths 'src/**/*.test.ts'"
 	},
 	"peerDependencies": {
+		"@typescript-eslint/eslint-plugin": "*",
+		"@typescript-eslint/parser": "*",
 		"eslint": "*",
 		"eslint-plugin-react": "*",
-		"eslint-plugin-react-hooks": "*",
-		"@typescript-eslint/eslint-plugin": "*",
-		"@typescript-eslint/parser": "*"
+		"eslint-plugin-react-hooks": "*"
+	},
+	"devDependencies": {
+		"@types/eslint": "^8.4.5",
+		"@types/mocha": "*",
+		"@types/node": "18.7.6",
+		"@types/react": "*",
+		"@types/react-dom": "*",
+		"mocha": "*",
+		"react": "*",
+		"react-dom": "*",
+		"ts-mocha": "*",
+		"typescript": "*"
+	},
+	"dependencies": {
+		"@simpleview/mochalib": "1.0.2"
 	}
 }
