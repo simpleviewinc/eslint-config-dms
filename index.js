@@ -71,7 +71,8 @@ module.exports = {
 						"ignoreRestSiblings": true
 					}
 				],
-				"@typescript-eslint/no-explicit-any": "off"
+				"@typescript-eslint/no-explicit-any": "off",
+				"@typescript-eslint/no-var-requires": "off"
 			},
 			"extends": [
 				"eslint:recommended",
