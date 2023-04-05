@@ -16,3 +16,10 @@ export default function AppTs() {
 
 // @typescript-eslint/no-unused-vars
 const nonUnused = "test"
+
+// @typescript-eslint/no-inferrable-types - should not error on these
+const inferable: string = "foo";
+function inferableFn(arg1: string = "test") {
+	return inferable;
+}
+inferableFn();
