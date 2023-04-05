@@ -14,6 +14,7 @@
 	},
 	"homepage": "https://github.com/simpleviewinc/eslint-config-dms#readme",
 	"scripts": {
+		"docker": "bash ./scripts/run",
 		"publish": "bash ./scripts/publish",
 		"style": "eslint .",
 		"test": "ts-mocha --paths 'src/**/*.test.ts'"
@@ -31,6 +32,11 @@
 		"@types/node": "18.7.6",
 		"@types/react": "*",
 		"@types/react-dom": "*",
+		"@typescript-eslint/eslint-plugin": "5.57.1",
+		"@typescript-eslint/parser": "5.57.1",
+		"eslint": "8.37.0",
+		"eslint-plugin-react": "7.32.2",
+		"eslint-plugin-react-hooks": "4.6.0",
 		"mocha": "*",
 		"react": "*",
 		"react-dom": "*",
