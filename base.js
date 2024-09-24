@@ -33,6 +33,11 @@ module.exports = {
 	"overrides": [
 		{
 			"files": [
+				"**/*.jsx"
+			]
+		},
+		{
+			"files": [
 				"**/*.ts",
 				"**/*.tsx"
 			],
