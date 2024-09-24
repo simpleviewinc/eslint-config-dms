@@ -15,7 +15,8 @@
 	"scripts": {
 		"docker": "bash ./scripts/run",
 		"publish": "bash ./scripts/publish",
-		"style": "eslint .",
+		"style:base": "eslint -c ./base.js .",
+		"style:react": "eslint -c ./react.js .",
 		"test": "ts-mocha --paths 'src/**/*.test.ts'"
 	},
 	"peerDependencies": {
