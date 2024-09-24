@@ -50,6 +50,56 @@ describe(__filename, function () {
 						"@typescript-eslint/no-unused-vars"
 					]
 				}
+			},
+			{
+				name: "react config: js file",
+				args: {
+					configFile: "./react.js",
+					file: "src/esLint.js",
+					errorCount: 1,
+					messages: [
+						"no-unused-vars"
+					]
+				}
+			},
+			{
+				name: "react config: jsx file",
+				args: {
+					configFile: "./react.js",
+					file: "src/esLint.jsx",
+					errorCount: 3,
+					messages: [
+						"react-hooks/rules-of-hooks",
+						"react-hooks/exhaustive-deps",
+						"no-unused-vars"
+					]
+				}
+			},
+			{
+				name: "react config: ts file",
+				args: {
+					configFile: "./react.js",
+					file: "src/esLint.ts",
+					errorCount: 3,
+					messages: [
+						"react-hooks/rules-of-hooks",
+						"react-hooks/exhaustive-deps",
+						"@typescript-eslint/no-unused-vars"
+					]
+				}
+			},
+			{
+				name: "react config: tsx file",
+				args: {
+					configFile: "./react.js",
+					file: "src/esLint.tsx",
+					errorCount: 3,
+					messages: [
+						"react-hooks/rules-of-hooks",
+						"react-hooks/exhaustive-deps",
+						"@typescript-eslint/no-unused-vars"
+					]
+				}
 			}
 		];
 
