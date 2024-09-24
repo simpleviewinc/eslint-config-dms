@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 
 export default function AppJsx() {
-	const [address, setAddress] = useState({country: '', city: ''});
-	const obj = {country: 'Germany', city: 'Hamburg'};
+	const [address, setAddress] = useState({ country: '', city: '' });
+	const obj = { country: 'Germany', city: 'Hamburg' };
 
 	// react-hooks/rules-of-hooks
-	useEffect(() => {
-		setAddress(obj);
-		// react-hooks/exhaustive-deps
-	}, []);
+	for (let i = 0; i < 10; i++) {
+		useEffect(() => {
+			setAddress(obj);
+			// react-hooks/exhaustive-deps
+		}, []);
+	}
 
-	return address
+	return address;
 }
 
-// @typescript-eslint/no-unused-vars
-const nonUnused = "test"
+// no-unused-vars
+const unused = "test";
