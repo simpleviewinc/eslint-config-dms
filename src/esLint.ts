@@ -1,23 +1,24 @@
-// Should not working
-// react-hooks/exhaustive-deps and react-hooks/rules-of-hooks
-
 import { useEffect, useState } from 'react';
 
 export default function AppTs() {
-	const [address, setAddress] = useState({country: '', city: ''});
-	const obj = {country: 'Germany', city: 'Hamburg'};
+	const [address, setAddress] = useState({ country: '', city: '' });
+	const obj = { country: 'Germany', city: 'Hamburg' };
 
-	useEffect(() => {
-		setAddress(obj);
-	}, []);
+	// react-hooks/rules-of-hooks
+	for (let i = 0; i < 10; i++) {
+		useEffect(() => {
+			setAddress(obj);
+			// react-hooks/exhaustive-deps
+		}, []);
+	}
 
-	return address
+	return address;
 }
 
 // @typescript-eslint/no-unused-vars
-const nonUnused = "test"
+const unused = "test";
 
-// @typescript-eslint/no-inferrable-types - should not error on these
+// @typescript-eslint/no-inferrable-types
 const inferable: string = "foo";
 function inferableFn(arg1: string = "test") {
 	return inferable;
