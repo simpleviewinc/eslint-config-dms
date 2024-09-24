@@ -1,18 +1,19 @@
-// Should not working
-// react-hooks/exhaustive-deps and react-hooks/rules-of-hooks
-
 import { useEffect, useState } from 'react';
 
 export default function AppJs() {
-	const [address, setAddress] = useState({country: '', city: ''});
-	const obj = {country: 'Germany', city: 'Hamburg'};
+	const [address, setAddress] = useState({ country: '', city: '' });
+	const obj = { country: 'Germany', city: 'Hamburg' };
 
-	useEffect(() => {
-		setAddress(obj);
-	}, []);
+	// react-hooks/rules-of-hooks
+	for (let i = 0; i < 10; i++) {
+		useEffect(() => {
+			setAddress(obj);
+			// react-hooks/exhaustive-deps
+		}, []);
+	}
 
-	return address
+	return address;
 }
 
-// @typescript-eslint/no-unused-vars
-const nonUnused = "test"
+// no-unused-vars
+const unused = "test";
