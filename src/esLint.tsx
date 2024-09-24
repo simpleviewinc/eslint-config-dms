@@ -1,22 +1,30 @@
 import { useEffect, useState } from 'react';
 
 export default function AppTsx() {
-	const [address, setAddress] = useState({country: '', city: ''});
-	const obj = {country: 'Germany', city: 'Hamburg'};
+	const [address, setAddress] = useState({ country: '', city: '' });
+	const obj = { country: 'Germany', city: 'Hamburg' };
 
 	// react-hooks/rules-of-hooks
-	useEffect(() => {
-		setAddress(obj);
-		// react-hooks/exhaustive-deps
-	}, []);
+	for (let i = 0; i < 10; i++) {
+		useEffect(() => {
+			setAddress(obj);
+			// react-hooks/exhaustive-deps
+		}, []);
+	}
 
-	return address
+	return address;
 }
 
-// Should not work
+// @typescript-eslint/no-unused-vars
+const unused = "test";
+
 // @typescript-eslint/no-explicit-any
 const anyVariable: any = "test";
 console.log(anyVariable);
 
-// @typescript-eslint/no-unused-vars
-const nonUnused = "test"
+// @typescript-eslint/no-inferrable-types
+const inferable: string = "foo";
+function inferableFn(arg1: string = "test") {
+	return inferable;
+}
+inferableFn();
