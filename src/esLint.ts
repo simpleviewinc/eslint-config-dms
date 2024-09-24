@@ -18,6 +18,10 @@ export default function AppTs() {
 // @typescript-eslint/no-unused-vars
 const unused = "test";
 
+// @typescript-eslint/no-explicit-any
+const anyVariable: any = "test";
+console.log(anyVariable);
+
 // @typescript-eslint/no-inferrable-types
 const inferable: string = "foo";
 function inferableFn(arg1: string = "test") {
