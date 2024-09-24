@@ -1,70 +1,73 @@
 import { testArray } from "@simpleview/mochalib";
-import { deepStrictEqual } from "assert";
+import { strictEqual } from "node:assert/strict";
 import { ESLint } from "eslint";
 
 describe(__filename, function () {
 	this.timeout(300000);
-	describe("lint rules", function () {
+
+	describe("eslint configs", function () {
 		const tests = [
 			{
-				name: "js files",
+				name: "base config: js file",
 				args: {
-					files: [`src/*.js`],
+					configFile: "./base.js",
+					file: "src/esLint.js",
 					errorCount: 1,
 					messages: [
-						"no-unused-vars",
+						"no-unused-vars"
 					]
 				}
 			},
 			{
-				name: "jsx files",
+				name: "base config: jsx file",
 				args: {
-					files: [`src/*.jsx`],
-					errorCount: 2,
-					messages: [
-						"react-hooks/exhaustive-deps",
-						"no-unused-vars",
-					]
-				}
-			},
-			{
-				name: "ts files",
-				args: {
-					files: [`src/*.ts`],
+					configFile: "./base.js",
+					file: "src/esLint.jsx",
 					errorCount: 1,
 					messages: [
-						"@typescript-eslint/no-unused-vars",
+						"no-unused-vars"
 					]
 				}
 			},
 			{
-				name: "tsx files",
+				name: "base config: ts file",
 				args: {
-					files: [`src/*.tsx`],
-					errorCount: 3,
+					configFile: "./base.js",
+					file: "src/esLint.ts",
+					errorCount: 1,
 					messages: [
-						"react-hooks/exhaustive-deps",
-						"no-unused-vars",
-						"@typescript-eslint/no-unused-vars",
+						"@typescript-eslint/no-unused-vars"
+					]
+				}
+			},
+			{
+				name: "base config: tsx file",
+				args: {
+					configFile: "./base.js",
+					file: "src/esLint.tsx",
+					errorCount: 1,
+					messages: [
+						"@typescript-eslint/no-unused-vars"
 					]
 				}
 			}
-		]
+		];
 
 		testArray(tests, async function (test) {
-			// 1. ESLint instance.
-			const eslint = new ESLint();
+			const eslint = new ESLint({
+				overrideConfigFile: test.configFile
+			});
 
-			// 2. Lint file.
-			const result = await eslint.lintFiles(test.files);
+			// lint file
+			const result = await eslint.lintFiles(test.file);
 
-			// 3. Check Error Count
-			deepStrictEqual(test.errorCount, result[0].errorCount);
-			
-			// 4. Check Error Messages
-			for (let index = 0; index < result[0].messages.length; index++) {
-				deepStrictEqual(result[0].messages[index].ruleId, test.messages[index]);
+			// check error count
+			strictEqual(result[0].errorCount, test.errorCount);
+
+			// check error messages
+			for (let i = 0; i < result[0].messages.length; i++) {
+				strictEqual(result[0].messages[i].ruleId, test.messages[i]);
 			}
 		});
 	});
-})
+});
