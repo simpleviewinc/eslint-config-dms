@@ -1,8 +1,7 @@
 {
 	"name": "@simpleview/eslint-config-dms",
-	"version": "0.0.7",
+	"version": "1.0.0",
 	"description": "DMS eslint config",
-	"main": "index.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/simpleviewinc/eslint-config-dms.git"
@@ -26,6 +25,14 @@
 		"eslint-plugin-react": "*",
 		"eslint-plugin-react-hooks": "*"
 	},
+	"peerDependenciesMeta": {
+		"eslint-plugin-react": {
+			"optional": true
+		},
+		"eslint-plugin-react-hooks": {
+			"optional": true
+		}
+	},
 	"devDependencies": {
 		"@types/eslint": "^8.4.5",
 		"@types/mocha": "*",
@@ -41,9 +48,7 @@
 		"react": "*",
 		"react-dom": "*",
 		"ts-mocha": "*",
-		"typescript": "*"
-	},
-	"dependencies": {
+		"typescript": "*",
 		"@simpleview/mochalib": "1.0.2"
 	}
 }
