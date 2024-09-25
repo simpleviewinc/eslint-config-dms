@@ -31,15 +31,10 @@ module.exports = {
 		"key-spacing": 2
 	},
 	"overrides": [
+		// switch to typescript linting for .ts files
 		{
 			"files": [
-				"**/*.jsx"
-			]
-		},
-		{
-			"files": [
-				"**/*.ts",
-				"**/*.tsx"
+				"**/*.ts"
 			],
 			"parser": "@typescript-eslint/parser",
 			"plugins": [
