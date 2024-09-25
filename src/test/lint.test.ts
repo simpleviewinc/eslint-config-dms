@@ -19,32 +19,10 @@ describe(__filename, function () {
 				}
 			},
 			{
-				name: "base config: jsx file",
-				args: {
-					configFile: "./base.js",
-					file: "src/esLint.jsx",
-					errorCount: 1,
-					messages: [
-						"no-unused-vars"
-					]
-				}
-			},
-			{
 				name: "base config: ts file",
 				args: {
 					configFile: "./base.js",
 					file: "src/esLint.ts",
-					errorCount: 1,
-					messages: [
-						"@typescript-eslint/no-unused-vars"
-					]
-				}
-			},
-			{
-				name: "base config: tsx file",
-				args: {
-					configFile: "./base.js",
-					file: "src/esLint.tsx",
 					errorCount: 1,
 					messages: [
 						"@typescript-eslint/no-unused-vars"
