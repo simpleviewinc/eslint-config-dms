@@ -1,87 +1,89 @@
-import { testArray } from "@simpleview/mochalib";
-import { strictEqual } from "node:assert/strict";
+import { testArray, TestDef } from "@simpleview/mochalib";
 import { ESLint } from "eslint";
+import { deepStrictEqual } from "assert";
 
 describe(__filename, function () {
 	this.timeout(300000);
 
 	describe("eslint configs", function () {
-		const tests = [
+		interface Test {
+			configFile: string
+			file: string
+			messages: string[]
+		}
+
+		const tests: TestDef<Test>[] = [
 			{
-				name: "base config: js file",
+				name: "javascript: on js file",
 				args: {
-					configFile: "./base.js",
-					file: "src/esLint.js",
-					errorCount: 1,
+					configFile: "./src/configs/javascript.mjs",
+					file: `${__dirname}/files/esLint.js`,
 					messages: [
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
 						"no-unused-vars"
 					]
 				}
 			},
 			{
-				name: "base config: ts file",
+				name: "typescript: on ts file",
 				args: {
-					configFile: "./base.js",
-					file: "src/esLint.ts",
-					errorCount: 1,
+					configFile: "./src/configs/typescript.mjs",
+					file: `${__dirname}/files/esLint.ts`,
 					messages: [
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
 						"@typescript-eslint/no-unused-vars"
-					]
-				}
-			},
-			{
-				name: "react config: js file",
-				args: {
-					configFile: "./react.js",
-					file: "src/esLint.js",
-					errorCount: 1,
-					messages: [
-						"no-unused-vars"
-					]
-				}
-			},
-			{
-				name: "react config: jsx file",
-				args: {
-					configFile: "./react.js",
-					file: "src/esLint.jsx",
-					errorCount: 3,
-					messages: [
-						"react-hooks/rules-of-hooks",
-						"react-hooks/exhaustive-deps",
-						"no-unused-vars"
 					]
 				}
 			},
 			{
 				name: "react config: ts file",
 				args: {
-					configFile: "./react.js",
-					file: "src/esLint.ts",
-					errorCount: 3,
+					configFile: "./src/configs/react_typescript.mjs",
+					file: `${__dirname}/files/esLint.ts`,
 					messages: [
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
+						"@typescript-eslint/no-unused-vars",
 						"react-hooks/rules-of-hooks",
-						"react-hooks/exhaustive-deps",
-						"@typescript-eslint/no-unused-vars"
+						"react-hooks/exhaustive-deps"
 					]
 				}
 			},
 			{
 				name: "react config: tsx file",
 				args: {
-					configFile: "./react.js",
-					file: "src/esLint.tsx",
-					errorCount: 3,
+					configFile: "./src/configs/react_typescript.mjs",
+					file: `${__dirname}/files/Component.tsx`,
 					messages: [
-						"react-hooks/rules-of-hooks",
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
+						"@typescript-eslint/no-unused-vars",
 						"react-hooks/exhaustive-deps",
-						"@typescript-eslint/no-unused-vars"
+						"react/jsx-key"
 					]
 				}
 			}
 		];
 
-		testArray(tests, async function (test) {
+		testArray<Test>(tests, async function (test) {
 			const eslint = new ESLint({
 				overrideConfigFile: test.configFile
 			});
@@ -89,13 +91,9 @@ describe(__filename, function () {
 			// lint file
 			const result = await eslint.lintFiles(test.file);
 
-			// check error count
-			strictEqual(result[0].errorCount, test.errorCount);
-
 			// check error messages
-			for (let i = 0; i < result[0].messages.length; i++) {
-				strictEqual(result[0].messages[i].ruleId, test.messages[i]);
-			}
+			const messages = result[0].messages.map(val => val.ruleId);
+			deepStrictEqual(messages, test.messages);
 		});
 	});
 });
