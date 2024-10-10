@@ -42,6 +42,7 @@ function t10(arg1: string = "test") {
 }
 console.log(t9, t10);
 
+// bogus react callback, valid with TS, invalid with react_ts
 function t11() {
 	const doSomething = true;
 
@@ -51,3 +52,10 @@ function t11() {
 	console.log(foo);
 }
 console.log(t11);
+
+// @typescript-eslint/no-non-null-assertion
+interface T12 {
+	nested?: string
+}
+const t12: T12 = {};
+console.log(t12.nested!.toString())

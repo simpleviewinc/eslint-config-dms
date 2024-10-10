@@ -12,6 +12,7 @@ export default {
 	rules: {
 		...jsBase.rules,
 		...flatTsConfig.rules,
+		"@typescript-eslint/no-non-null-assertion": "error",
 		"@typescript-eslint/no-unused-vars": [
 			2,
 			{

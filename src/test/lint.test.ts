@@ -41,7 +41,8 @@ describe(__filename, function () {
 						"@stylistic/indent",
 						"@stylistic/key-spacing",
 						"@stylistic/keyword-spacing",
-						"@typescript-eslint/no-unused-vars"
+						"@typescript-eslint/no-unused-vars",
+						"@typescript-eslint/no-non-null-assertion"
 					]
 				}
 			},
@@ -59,7 +60,8 @@ describe(__filename, function () {
 						"@stylistic/keyword-spacing",
 						"@typescript-eslint/no-unused-vars",
 						"react-hooks/rules-of-hooks",
-						"react-hooks/exhaustive-deps"
+						"react-hooks/exhaustive-deps",
+						"@typescript-eslint/no-non-null-assertion"
 					]
 				}
 			},
