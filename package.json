@@ -19,7 +19,7 @@
 		"test": "ts-mocha --paths 'src/**/*.test.ts'"
 	},
 	"files": [
-		"src/configs/"
+		"src"
 	],
 	"exports": {
 		"./javascript": "./src/configs/javascript.mjs",
