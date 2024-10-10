@@ -6,7 +6,5 @@ services:
     volumes:
       - "./package.json:/app/package.json"
       - "./tsconfig.json:/app/tsconfig.json"
-      - "./.eslintrc.js:/app/.eslintrc.js"
-      - "./index.js:/app/index.js"
       - "./src:/app/src"
       - "./scripts:/app/scripts"

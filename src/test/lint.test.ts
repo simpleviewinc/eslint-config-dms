@@ -1,70 +1,99 @@
-import { testArray } from "@simpleview/mochalib";
-import { deepStrictEqual } from "assert";
+import { testArray, TestDef } from "@simpleview/mochalib";
 import { ESLint } from "eslint";
+import { deepStrictEqual } from "assert";
 
 describe(__filename, function () {
 	this.timeout(300000);
-	describe("lint rules", function () {
-		const tests = [
+
+	describe("eslint configs", function () {
+		interface Test {
+			configFile: string
+			file: string
+			messages: string[]
+		}
+
+		const tests: TestDef<Test>[] = [
 			{
-				name: "js files",
+				name: "javascript: on js file",
 				args: {
-					files: [`src/*.js`],
-					errorCount: 1,
+					configFile: "./src/configs/javascript.mjs",
+					file: `${__dirname}/files/esLint.js`,
 					messages: [
-						"no-unused-vars",
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
+						"no-unused-vars"
 					]
 				}
 			},
 			{
-				name: "jsx files",
+				name: "typescript: on ts file",
 				args: {
-					files: [`src/*.jsx`],
-					errorCount: 2,
+					configFile: "./src/configs/typescript.mjs",
+					file: `${__dirname}/files/esLint.ts`,
 					messages: [
-						"react-hooks/exhaustive-deps",
-						"no-unused-vars",
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
+						"@typescript-eslint/no-unused-vars"
 					]
 				}
 			},
 			{
-				name: "ts files",
+				name: "react config: ts file",
 				args: {
-					files: [`src/*.ts`],
-					errorCount: 1,
+					configFile: "./src/configs/react_typescript.mjs",
+					file: `${__dirname}/files/esLint.ts`,
 					messages: [
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
 						"@typescript-eslint/no-unused-vars",
+						"react-hooks/rules-of-hooks",
+						"react-hooks/exhaustive-deps"
 					]
 				}
 			},
 			{
-				name: "tsx files",
+				name: "react config: tsx file",
 				args: {
-					files: [`src/*.tsx`],
-					errorCount: 3,
+					configFile: "./src/configs/react_typescript.mjs",
+					file: `${__dirname}/files/Component.tsx`,
 					messages: [
-						"react-hooks/exhaustive-deps",
-						"no-unused-vars",
+						"no-var",
+						"@stylistic/one-var-declaration-per-line",
+						"@stylistic/space-infix-ops",
+						"@stylistic/indent",
+						"@stylistic/key-spacing",
+						"@stylistic/keyword-spacing",
 						"@typescript-eslint/no-unused-vars",
+						"react-hooks/exhaustive-deps",
+						"react/jsx-key"
 					]
 				}
 			}
-		]
+		];
 
-		testArray(tests, async function (test) {
-			// 1. ESLint instance.
-			const eslint = new ESLint();
+		testArray<Test>(tests, async function (test) {
+			const eslint = new ESLint({
+				overrideConfigFile: test.configFile
+			});
 
-			// 2. Lint file.
-			const result = await eslint.lintFiles(test.files);
+			// lint file
+			const result = await eslint.lintFiles(test.file);
 
-			// 3. Check Error Count
-			deepStrictEqual(test.errorCount, result[0].errorCount);
-			
-			// 4. Check Error Messages
-			for (let index = 0; index < result[0].messages.length; index++) {
-				deepStrictEqual(result[0].messages[index].ruleId, test.messages[index]);
-			}
+			// check error messages
+			const messages = result[0].messages.map(val => val.ruleId);
+			deepStrictEqual(messages, test.messages);
 		});
 	});
-})
+});
