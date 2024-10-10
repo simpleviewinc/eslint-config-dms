@@ -14,7 +14,6 @@ const plugins = {
 	"react-hooks": reactHooks
 }
 
-/** @type {import("eslint").Linter.Config} */
 export default {
 	plugins,
 	files,

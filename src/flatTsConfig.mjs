@@ -1,5 +1,6 @@
 import tseslint from "typescript-eslint";
 
+/** @type {import("eslint").Linter.Config} **/
 const flatConfig = tseslint.configs.recommended.reduce((prev, curr) => {
 	for (const [key, val] of Object.entries(curr)) {
 		if (key === "rules") {

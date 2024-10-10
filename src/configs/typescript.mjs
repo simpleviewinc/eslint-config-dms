@@ -2,6 +2,7 @@
 import jsBase from "./javascript.mjs";
 import flatTsConfig from "../flatTsConfig.mjs";
 
+/** @type {import("eslint").Linter.Config} */
 export default {
 	...flatTsConfig,
 	plugins: {
